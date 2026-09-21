@@ -125,7 +125,7 @@
 </head>
 <body class="bg-[#030014] text-slate-100 font-sans min-h-screen flex flex-col justify-between relative overflow-x-hidden selection:bg-brand-500 selection:text-white">
 
-    <!-- Efeitos de Fundo (Glows que reagem por trás do Glass) -->
+    <!-- Efeitos de Fundo -->
     <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-500/20 rounded-full blur-[140px] pointer-events-none -z-10"></div>
     <div class="fixed bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-accent/20 rounded-full blur-[160px] pointer-events-none -z-10"></div>
     <div class="fixed top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-purple-600/15 rounded-full blur-[130px] pointer-events-none -z-10"></div>
@@ -143,7 +143,7 @@
             <!-- Badge de Status Glass -->
             <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-button text-xs text-purple-200">
                 <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse shadow-[0_0_10px_#d946ef]"></span>
-                <span>Disponível para ouvir e baixar</span>
+                <span>Disponível para ouvir</span>
             </div>
         </div>
     </header>
@@ -158,7 +158,7 @@
             <div class="relative group my-4">
                 <div class="absolute -inset-2 bg-gradient-to-r from-brand-500 via-purple-600 to-brand-accent rounded-full blur-2xl opacity-40 group-hover:opacity-75 transition duration-500"></div>
                 <div class="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl rotating-cover flex items-center justify-center bg-[#030014]/80">
-                    <img id="track-cover" src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=600&q=80" alt="Capa da música" class="w-full h-full object-cover">
+                    <img id="track-cover" src="" alt="Capa da música" class="w-full h-full object-cover">
                     <!-- Furo central de disco de vinil -->
                     <div class="absolute w-8 h-8 rounded-full bg-[#030014] border-2 border-white/20 z-10 shadow-inner"></div>
                 </div>
@@ -208,7 +208,7 @@
                 </button>
             </div>
 
-            <!-- Volume e Download -->
+            <!-- Volume -->
             <div class="flex items-center justify-between w-full mt-6 pt-6 border-t border-white/10 gap-4">
                 <div class="flex items-center gap-2 w-1/2 max-w-[160px]">
                     <button id="btn-mute" class="text-purple-200/60 hover:text-purple-200">
@@ -216,6 +216,7 @@
                     </button>
                     <input type="range" id="volume-bar" min="0" max="1" step="0.01" value="0.8" class="w-full">
                 </div>
+            </div>
 
         </section>
 
@@ -249,13 +250,15 @@
                         <span>YouTube</span>
                     </a>
                     <a href="https://www.tiktok.com/@djyukeeh" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 p-3 rounded-xl glass-button hover:bg-pink-500/15 hover:border-pink-500/30 text-purple-200 hover:text-pink-400 transition text-xs font-medium">
-                        <i data-lucide="tiktok" class="w-4 h-4 text-pink-500"></i>
-                        <span>Instagram</span>
+                        <i data-lucide="music-2" class="w-4 h-4 text-pink-500"></i>
+                        <span>TikTok</span>
                     </a>
                     <a href="https://www.instagram.com/djyukeeh/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 p-3 rounded-xl glass-button hover:bg-emerald-500/15 hover:border-emerald-500/30 text-purple-200 hover:text-emerald-400 transition text-xs font-medium">
                         <i data-lucide="instagram" class="w-4 h-4 text-emerald-500"></i>
-                        <span>WhatsApp</span>
+                        <span>Instagram</span>
+                    </a>
                 </div>
+            </div>
         </section>
 
     </main>
@@ -272,39 +275,23 @@
     <audio id="audio-player" class="hidden"></audio>
 
     <script>
-        // Playlist
+        // Playlist utilizando caminhos locais do repositório no GitHub
         const playlist = [
             {
-                title: "Vibrações Noturnas",
-                artist: "Seu Nome de Artista",
+                title: "Primeira Música",
+                artist: "Dj Yukeeh",
                 album: "Single - 2024",
+                duration: "3:00",
+                cover: "capas/capa1.jpg",      // Altere para o nome exato do arquivo de imagem enviado na pasta capas
+                url: "musicas/musica1.mp3"     // Altere para o nome exato do arquivo MP3 enviado na pasta musicas
+            },
+            {
+                title: "Segunda Música",
+                artist: "Dj Yukeeh",
+                album: "EP Lançamento",
                 duration: "2:45",
-                cover: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=600&q=80",
-                url: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
-            },
-            {
-                title: "Ecos do Infinito",
-                artist: "Seu Nome de Artista",
-                album: "EP Horizonte",
-                duration: "3:12",
-                cover: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
-                url: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=ambient-piano-amp-strings-10711.mp3"
-            },
-            {
-                title: "Estrada de Sangue e Sol",
-                artist: "Seu Nome de Artista",
-                album: "EP Horizonte",
-                duration: "2:18",
-                cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80",
-                url: "https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=chill-abstract-intention-12099.mp3"
-            },
-            {
-                title: "Madrugada Synth",
-                artist: "Seu Nome de Artista",
-                album: "Single - 2023",
-                duration: "2:50",
-                cover: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80",
-                url: "https://cdn.pixabay.com/download/audio/2022/10/14/audio_9939f7922d.mp3?filename=synthwave-80s-110045.mp3"
+                cover: "capas/capa2.jpg",      // Altere para o nome exato da capa 2
+                url: "musicas/musica2.mp3"     // Altere para o nome exato da música 2
             }
         ];
 
@@ -320,7 +307,6 @@
         const volumeBar = document.getElementById('volume-bar');
         const btnMute = document.getElementById('btn-mute');
         const volumeIcon = document.getElementById('volume-icon');
-        const btnDownload = document.getElementById('btn-download');
 
         const trackCover = document.getElementById('track-cover');
         const trackTitle = document.getElementById('track-title');
@@ -353,7 +339,6 @@
             trackArtist.textContent = track.artist;
             trackAlbum.textContent = track.album;
             trackCover.src = track.cover;
-            btnDownload.href = track.url;
 
             updatePlaylistUI();
 
@@ -538,26 +523,6 @@
         btnPlay.addEventListener('click', togglePlay);
         btnNext.addEventListener('click', nextTrack);
         btnPrev.addEventListener('click', prevTrack);
-
-    ****plAYLIST***
-    const playlist = [
-    {
-        title: "Nome da Sua Primeira Música",
-        artist: "Seu Nome / Nome da Banda",
-        album: "Single - 2024",
-        duration: "3:45", // Duração aproximada
-        cover: "capas/capa1.jpg", // Caminho para a imagem na pasta capas
-        url: "musicas/musica1.mp3" // Caminho para a música na pasta musicas
-    },
-    {
-        title: "Nome da Segunda Música",
-        artist: "Seu Nome / Nome da Banda",
-        album: "Álbum Meu Início",
-        duration: "2:50",
-        cover: "capas/capa2.jpg",
-        url: "musicas/musica2.mp3"
-    }
-];
     </script>
 </body>
 </html>
